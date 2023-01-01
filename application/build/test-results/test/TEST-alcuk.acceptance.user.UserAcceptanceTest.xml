@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="alcuk.acceptance.user.UserAcceptanceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-12-30T08:19:40" hostname="xb-apple.local" time="0.218">
+  <properties/>
+  <testcase name="유저 생성 성공 테스트" classname="alcuk.acceptance.user.UserAcceptanceTest" time="0.214"/>
+  <testcase name="특정 유저 조회 테스트" classname="alcuk.acceptance.user.UserAcceptanceTest" time="0.004"/>
+  <system-out><![CDATA[17:19:39.873 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+17:19:39.877 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+17:19:39.890 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [alcuk.acceptance.user.UserAcceptanceTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+17:19:39.895 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [alcuk.acceptance.user.UserAcceptanceTest], using SpringBootContextLoader
+17:19:39.896 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [alcuk.acceptance.user.UserAcceptanceTest]: class path resource [alcuk/acceptance/user/UserAcceptanceTest-context.xml] does not exist
+17:19:39.897 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [alcuk.acceptance.user.UserAcceptanceTest]: class path resource [alcuk/acceptance/user/UserAcceptanceTestContext.groovy] does not exist
+17:19:39.897 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [alcuk.acceptance.user.UserAcceptanceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+17:19:39.897 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [alcuk.acceptance.user.UserAcceptanceTest]: UserAcceptanceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:19:39.921 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [alcuk.acceptance.user.UserAcceptanceTest]
+17:19:39.942 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/devxb/develop/board-study/board-study/boardstudy/application/build/classes/java/main/alcuk/Main.class]
+17:19:39.942 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration alcuk.Main for test class alcuk.acceptance.user.UserAcceptanceTest
+17:19:39.977 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [alcuk.acceptance.user.UserAcceptanceTest]: using defaults.
+17:19:39.977 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+17:19:39.981 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
+17:19:39.981 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+17:19:39.981 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@d816dde, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6e33c391, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@6c451c9c, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@31c269fd, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@372b0d86, org.springframework.test.context.support.DirtiesContextTestExecutionListener@47747fb9, org.springframework.test.context.event.EventPublishingTestExecutionListener@3113a37, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@213e3629, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@4e9658b5, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2a7b6f69, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@20312893, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@70eecdc2, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@c41709a]
+17:19:39.982 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@52d10fb8 testClass = UserAcceptanceTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@41c07648 testClass = UserAcceptanceTest, locations = '{}', classes = '{class alcuk.Main}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@698122b2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@5a7005d, [ImportsContextCustomizer@1fe8d51b key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@3e5499cc, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@15cafec7, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@d8305c2, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@13526e59], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.1)
+
+2022-12-30 17:19:40.107  INFO 14904 --- [    Test worker] a.acceptance.user.UserAcceptanceTest     : Starting UserAcceptanceTest using Java 11.0.15.1 on xb-apple.local with PID 14904 (started by devxb in /Users/devxb/develop/board-study/board-study/boardstudy/application)
+2022-12-30 17:19:40.108  INFO 14904 --- [    Test worker] a.acceptance.user.UserAcceptanceTest     : No active profile set, falling back to 1 default profile: "default"
+2022-12-30 17:19:40.608  INFO 14904 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-12-30 17:19:40.608  INFO 14904 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-12-30 17:19:40.608  INFO 14904 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2022-12-30 17:19:40.616  INFO 14904 --- [    Test worker] a.acceptance.user.UserAcceptanceTest     : Started UserAcceptanceTest in 0.617 seconds (JVM running for 1.081)
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /user/alcuk
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = alcuk.controller.user.UserController
+           Method = alcuk.controller.user.UserController#readUser(String)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:"application/json"]
+     Content type = application/json
+             Body = {"id":1,"name":"alcuk","user_id":"alcuk_id","user_password":"alcuk_password","created_at":"2022-12-30"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /user/devxb
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = alcuk.controller.user.UserController
+           Method = alcuk.controller.user.UserController#readUser(String)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:"application/json"]
+     Content type = application/json
+             Body = {"id":2,"name":"devxb","user_id":"devxb_id","user_password":"devxb_password","created_at":"2022-12-30"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
