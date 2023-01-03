@@ -26,11 +26,8 @@ public class ArticleController {
         List<ArticleDto> articleDtos = articleService.readArticle();
         List<ArticleResponse> articleResponseList = new ArrayList<ArticleResponse>();
         for (ArticleDto articleDto : articleDtos) {
-            articleResponseList.add(new ArticleResponse(articleDto.getId(),
-                    articleDto.getTitle(),
-                    articleDto.getContent(),
-                    articleDto.getCreatedAt(),
-                    articleDto.getAuthor()));
+            ArticleResponse articleResponse;
+            articleResponseList.add(articleResponse = new ArticleResponse(articleDto.getId(), articleDto.getTitle(), articleDto.getContent(), articleDto.getCreatedAt(), articleDto.getAuthor()));
         }
         return articleResponseList;
     }

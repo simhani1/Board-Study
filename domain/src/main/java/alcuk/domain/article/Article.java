@@ -1,7 +1,5 @@
 package alcuk.domain.article;
 
-import alcuk.article.service.dto.*;
-
 import java.time.LocalDate;
 
 public class Article {

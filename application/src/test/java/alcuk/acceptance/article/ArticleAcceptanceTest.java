@@ -46,7 +46,7 @@ public class ArticleAcceptanceTest {
 
     private void throwIfDoesNotDeletedAllUser() throws Exception {
         for (ArticleResponse articleResponse : resultList) {
-            Assertions.assertThrows(NestedServletException.class, () ->
+            Assertions.assertThrows(AssertionError.class, () ->
                     mvc.perform(MockMvcRequestBuilders.get("/article"))
                             .andExpectAll(
                                     MockMvcResultMatchers.status().isOk(),
@@ -66,7 +66,7 @@ public class ArticleAcceptanceTest {
         // when
         mvc.perform(MockMvcRequestBuilders.post(url).contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(request)));
         ResultActions result = mvc.perform(MockMvcRequestBuilders.get("/article"));
-        List<ArticleResponse> articleResponse = Arrays.asList(objectMapper.readValue(result.andReturn().getResponse().getContentAsString(), ArticleResponse.class));
+        List<ArticleResponse> articleResponse = Arrays.asList(objectMapper.readValue(result.andReturn().getResponse().getContentAsString(), ArticleResponse[].class));
         resultList.add(articleResponse.get(0));
 
         // then
@@ -74,8 +74,8 @@ public class ArticleAcceptanceTest {
                 MockMvcResultMatchers.status().isOk(),
                 MockMvcResultMatchers.jsonPath("$.[0].title").value(request.getTitle()),
                 MockMvcResultMatchers.jsonPath("$.[0].content").value(request.getContent()),
-                MockMvcResultMatchers.jsonPath("$.[0].authorDto.id").value(request.getAuthor().getId()),
-                MockMvcResultMatchers.jsonPath("$.[0].authorDto.name").value(request.getAuthor().getName())
+                MockMvcResultMatchers.jsonPath("$.[0].author.id").value(request.getAuthor().getId()),
+                MockMvcResultMatchers.jsonPath("$.[0].author.name").value(request.getAuthor().getName())
         ).andDo(MockMvcResultHandlers.print());
     }
 

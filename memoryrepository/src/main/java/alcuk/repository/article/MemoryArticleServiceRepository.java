@@ -41,7 +41,7 @@ public class MemoryArticleServiceRepository implements ArticleServiceRepository 
     public void deleteArticle(int id) {
         for (Article article : ArticleMemoryDataBase.articles) {
             if (article.getId() == id) {
-                ArticleMemoryDataBase.articles.remove(id);
+                ArticleMemoryDataBase.articles.remove(article);
                 return;
             }
         }
