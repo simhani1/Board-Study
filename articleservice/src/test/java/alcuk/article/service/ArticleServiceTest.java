@@ -35,6 +35,7 @@ public class ArticleServiceTest {
         AuthorDto authorDto = new AuthorDto(1, "simhani1");
         ArticleDto createArticleRequest = new ArticleDto(title, content, authorDto);
         List<ArticleDto> response = new ArrayList<ArticleDto>();
+        response.add(createArticleRequest);
 
         // when
         Mockito.when(articleServiceRepository.readArticle()).thenReturn(response);
@@ -49,6 +50,16 @@ public class ArticleServiceTest {
                 () -> Assertions.assertEquals(authorDto.getId(), result.get(0).getAuthor().getId()),
                 () -> Assertions.assertEquals(authorDto.getName(), result.get(0).getAuthor().getName())
         );
-
     }
+
+    @Test
+    @DisplayName("게시글 삭제")
+    public void DELETE_ARTICLE() {
+        // given
+        int id = 1;
+
+        // then
+        Assertions.assertDoesNotThrow(() -> articleService.deleteArticle(id));
+    }
+
 }
