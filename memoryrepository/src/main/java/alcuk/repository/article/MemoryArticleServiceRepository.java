@@ -7,6 +7,7 @@ import memorydatabase.ArticleMemoryDataBase;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,11 +26,28 @@ public class MemoryArticleServiceRepository implements ArticleServiceRepository 
 
     @Override
     public List<ArticleDto> readArticle() {
-        return null;
+        List<ArticleDto> articles = new ArrayList<>();
+        for (Article article : ArticleMemoryDataBase.articles) {
+            articles.add(new ArticleDto(article.getId(),
+                    article.getTitle(),
+                    article.getContent(),
+                    article.getCreatedAt(),
+                    article.getAuthor()));
+        }
+        return articles;
     }
 
     @Override
     public void deleteArticle(int id) {
+        for (Article article : ArticleMemoryDataBase.articles) {
+            if (article.getId() == id) {
+                ArticleMemoryDataBase.articles.remove(id);
+                return;
+            }
+        }
+    }
 
+    public void deleteAll() {
+        ArticleMemoryDataBase.articles.clear();
     }
 }

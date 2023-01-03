@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.191s</div>
+<div class="counter">0.203s</div>
 <p>duration</p>
 </div>
 </td>
@@ -76,14 +76,26 @@
 <a name="CREATE_ARTICLE()"></a>
 <h3 class="failures">게시글 생성 성공 테스트</h3>
 <span class="code">
-<pre>com.fasterxml.jackson.databind.exc.MismatchedInputException: No content to map due to end-of-input
- at [Source: (String)&quot;&quot;; line: 1, column: 0]
-	at app//com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
-	at app//com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4765)
-	at app//com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4667)
-	at app//com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3629)
-	at app//com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3597)
-	at app//alcuk.acceptance.article.ArticleAcceptanceTest.CREATE_ARTICLE(ArticleAcceptanceTest.java:68)
+<pre>org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException
+	at app//org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at app//org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at app//javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at app//org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at app//org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at app//javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at app//org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:167)
+	at app//org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
+	at app//org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at app//org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at app//org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
+	at app//org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at app//org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at app//org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
+	at app//org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at app//org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at app//org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
+	at app//org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:199)
+	at app//alcuk.acceptance.article.ArticleAcceptanceTest.CREATE_ARTICLE(ArticleAcceptanceTest.java:66)
 	at java.base@11.0.15.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base@11.0.15.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base@11.0.15.1/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -167,6 +179,22 @@
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+Caused by: java.lang.NullPointerException
+	at alcuk.controller.article.ArticleController.readArticle(ArticleController.java:36)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	... 101 more
 </pre>
 </span>
 </div>
@@ -185,7 +213,7 @@
 <tr>
 <td class="failures">게시글 생성 성공 테스트</td>
 <td class="failures">CREATE_ARTICLE()</td>
-<td class="failures">0.191s</td>
+<td class="failures">0.203s</td>
 <td class="failures">failed</td>
 </tr>
 </table>
@@ -193,26 +221,25 @@
 <div id="tab2" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>12:28:03.573 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
-12:28:03.578 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
-12:28:03.596 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [alcuk.acceptance.article.ArticleAcceptanceTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
-12:28:03.601 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [alcuk.acceptance.article.ArticleAcceptanceTest], using SpringBootContextLoader
-12:28:03.603 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [alcuk.acceptance.article.ArticleAcceptanceTest]: class path resource [alcuk/acceptance/article/ArticleAcceptanceTest-context.xml] does not exist
-12:28:03.604 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [alcuk.acceptance.article.ArticleAcceptanceTest]: class path resource [alcuk/acceptance/article/ArticleAcceptanceTestContext.groovy] does not exist
-12:28:03.604 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [alcuk.acceptance.article.ArticleAcceptanceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-12:28:03.604 [Test worker] DEBUG org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Ignoring class [alcuk.acceptance.article.ArticleAcceptanceTest$Author]; it must be static, non-private, non-final, and annotated with @Configuration to be considered a default configuration class.
-12:28:03.604 [Test worker] DEBUG org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Ignoring class [alcuk.acceptance.article.ArticleAcceptanceTest$ArticleCreateRequest]; it must be static, non-private, non-final, and annotated with @Configuration to be considered a default configuration class.
-12:28:03.604 [Test worker] DEBUG org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Ignoring class [alcuk.acceptance.article.ArticleAcceptanceTest$ArticleResponse]; it must be static, non-private, non-final, and annotated with @Configuration to be considered a default configuration class.
-12:28:03.604 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [alcuk.acceptance.article.ArticleAcceptanceTest]: ArticleAcceptanceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-12:28:03.629 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [alcuk.acceptance.article.ArticleAcceptanceTest]
-12:28:03.656 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/simjonghan/source_code/spring_boot/boardstudy/application/build/classes/java/main/alcuk/Main.class]
-12:28:03.656 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration alcuk.Main for test class alcuk.acceptance.article.ArticleAcceptanceTest
-12:28:03.696 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [alcuk.acceptance.article.ArticleAcceptanceTest]: using defaults.
-12:28:03.697 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-12:28:03.706 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
-12:28:03.706 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
-12:28:03.707 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1af7f54a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6ebd78d1, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@436390f4, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4d157787, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@68ed96ca, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6d1310f6, org.springframework.test.context.event.EventPublishingTestExecutionListener@3228d990, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@54e7391d, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@50b8ae8d, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@255990cc, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@51c929ae, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@3c8bdd5b, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@29d2d081]
-12:28:03.709 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@33c2bd testClass = ArticleAcceptanceTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1dfd5f51 testClass = ArticleAcceptanceTest, locations = '{}', classes = '{class alcuk.Main}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@2cae1042, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@4c4d27c8, [ImportsContextCustomizer@3c321bdb key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@666b83a4, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2b95e48b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7be58f16, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@503f91c3], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true]], class annotated with @DirtiesContext [false] with mode [null].
+<pre>20:57:20.087 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+20:57:20.091 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+20:57:20.109 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [alcuk.acceptance.article.ArticleAcceptanceTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+20:57:20.114 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [alcuk.acceptance.article.ArticleAcceptanceTest], using SpringBootContextLoader
+20:57:20.116 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [alcuk.acceptance.article.ArticleAcceptanceTest]: class path resource [alcuk/acceptance/article/ArticleAcceptanceTest-context.xml] does not exist
+20:57:20.116 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [alcuk.acceptance.article.ArticleAcceptanceTest]: class path resource [alcuk/acceptance/article/ArticleAcceptanceTestContext.groovy] does not exist
+20:57:20.116 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [alcuk.acceptance.article.ArticleAcceptanceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+20:57:20.117 [Test worker] DEBUG org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Ignoring class [alcuk.acceptance.article.ArticleAcceptanceTest$ArticleCreateRequest]; it must be static, non-private, non-final, and annotated with @Configuration to be considered a default configuration class.
+20:57:20.117 [Test worker] DEBUG org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Ignoring class [alcuk.acceptance.article.ArticleAcceptanceTest$ArticleResponse]; it must be static, non-private, non-final, and annotated with @Configuration to be considered a default configuration class.
+20:57:20.117 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [alcuk.acceptance.article.ArticleAcceptanceTest]: ArticleAcceptanceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:57:20.139 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [alcuk.acceptance.article.ArticleAcceptanceTest]
+20:57:20.164 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/simjonghan/source_code/spring_boot/boardstudy/application/build/classes/java/main/alcuk/Main.class]
+20:57:20.165 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration alcuk.Main for test class alcuk.acceptance.article.ArticleAcceptanceTest
+20:57:20.199 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [alcuk.acceptance.article.ArticleAcceptanceTest]: using defaults.
+20:57:20.199 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+20:57:20.208 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
+20:57:20.208 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+20:57:20.209 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6d1310f6, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3228d990, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@54e7391d, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@50b8ae8d, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@255990cc, org.springframework.test.context.support.DirtiesContextTestExecutionListener@51c929ae, org.springframework.test.context.event.EventPublishingTestExecutionListener@3c8bdd5b, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@29d2d081, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@40e4ea87, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@58783f6c, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@3a7b503d, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@512d92b, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@62c5bbdc]
+20:57:20.210 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@4d4d8fcf testClass = ArticleAcceptanceTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@610db97e testClass = ArticleAcceptanceTest, locations = '{}', classes = '{class alcuk.Main}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@7c209437, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@338494fa, [ImportsContextCustomizer@6f0628de key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@efde75f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@3dddefd8, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@5b11a194, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@2235eaab], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true]], class annotated with @DirtiesContext [false] with mode [null].
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -222,12 +249,12 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v2.7.1)
 
-2023-01-03 12:28:03.996  INFO 24582 --- [    Test worker] a.a.article.ArticleAcceptanceTest        : Starting ArticleAcceptanceTest using Java 11.0.15.1 on simjonghan-ui-MacBookAir.local with PID 24582 (started by simjonghan in /Users/simjonghan/source_code/spring_boot/boardstudy/application)
-2023-01-03 12:28:03.997  INFO 24582 --- [    Test worker] a.a.article.ArticleAcceptanceTest        : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2023-01-03 12:28:04.617  INFO 24582 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2023-01-03 12:28:04.617  INFO 24582 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2023-01-03 12:28:04.618  INFO 24582 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
-2023-01-03 12:28:04.628  INFO 24582 --- [    Test worker] a.a.article.ArticleAcceptanceTest        : Started ArticleAcceptanceTest in 0.902 seconds (JVM running for 1.437)
+2023-01-03 20:57:20.341  INFO 31272 --- [    Test worker] a.a.article.ArticleAcceptanceTest        : Starting ArticleAcceptanceTest using Java 11.0.15.1 on simjonghan-ui-MacBookAir.local with PID 31272 (started by simjonghan in /Users/simjonghan/source_code/spring_boot/boardstudy/application)
+2023-01-03 20:57:20.341  INFO 31272 --- [    Test worker] a.a.article.ArticleAcceptanceTest        : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-01-03 20:57:20.940  INFO 31272 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-01-03 20:57:20.940  INFO 31272 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-01-03 20:57:20.941  INFO 31272 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2023-01-03 20:57:20.952  INFO 31272 --- [    Test worker] a.a.article.ArticleAcceptanceTest        : Started ArticleAcceptanceTest in 0.726 seconds (JVM running for 1.241)
 
 MockHttpServletRequest:
       HTTP Method = POST
@@ -238,7 +265,8 @@ MockHttpServletRequest:
     Session Attrs = {}
 
 Handler:
-             Type = org.springframework.web.servlet.resource.ResourceHttpRequestHandler
+             Type = alcuk.controller.article.ArticleController
+           Method = alcuk.controller.article.ArticleController#createArticle(ArticleCreateRequest)
 
 Async:
     Async started = false
@@ -256,45 +284,9 @@ FlashMap:
        Attributes = null
 
 MockHttpServletResponse:
-           Status = 404
+           Status = 200
     Error message = null
-          Headers = [Vary:&quot;Origin&quot;, &quot;Access-Control-Request-Method&quot;, &quot;Access-Control-Request-Headers&quot;]
-     Content type = null
-             Body = 
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
-
-MockHttpServletRequest:
-      HTTP Method = GET
-      Request URI = /article
-       Parameters = {}
           Headers = []
-             Body = null
-    Session Attrs = {}
-
-Handler:
-             Type = org.springframework.web.servlet.resource.ResourceHttpRequestHandler
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = null
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 404
-    Error message = null
-          Headers = [Vary:&quot;Origin&quot;, &quot;Access-Control-Request-Method&quot;, &quot;Access-Control-Request-Headers&quot;]
      Content type = null
              Body = 
     Forwarded URL = null
@@ -311,7 +303,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.4</a> at 2023. 1. 3. 오후 12:28:04</p>
+<a href="http://www.gradle.org">Gradle 7.4</a> at 2023. 1. 3. 오후 8:57:21</p>
 </div>
 </div>
 </body>

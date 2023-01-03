@@ -1,5 +1,7 @@
 package alcuk.article.service.dto;
 
+import alcuk.domain.article.Author;
+
 import java.time.LocalDate;
 
 public class ArticleDto {
@@ -7,22 +9,20 @@ public class ArticleDto {
     private String title;
     private String content;
     private LocalDate createdAt;
-    private AuthorDto authorDto;
+    private Author author;
 
-    // 게시글 생성
-    public ArticleDto(String title, String content, AuthorDto authorDto) {
-        this.title = title;
-        this.content = content;
-        this.authorDto = authorDto;
-    }
-
-    // 게시글 조회
-    public ArticleDto(int id, String title, String content, LocalDate createdAt, AuthorDto authorDto) {
+    public ArticleDto(int id, String title, String content, LocalDate createdAt, Author author) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
-        this.authorDto = authorDto;
+        this.author = author;
+    }
+
+    public ArticleDto(String title, String content, Author author) {
+        this.title = title;
+        this.content = content;
+        this.author = author;
     }
 
     public int getId() {
@@ -41,8 +41,7 @@ public class ArticleDto {
         return createdAt;
     }
 
-    public AuthorDto getAuthor() {
-        return authorDto;
+    public Author getAuthor() {
+        return author;
     }
-
 }

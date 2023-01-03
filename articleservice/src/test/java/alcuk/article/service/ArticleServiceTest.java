@@ -1,8 +1,8 @@
 package alcuk.article.service;
 
 import alcuk.article.service.spi.ArticleServiceRepository;
-import alcuk.article.service.dto.AuthorDto;
 import alcuk.article.service.dto.ArticleDto;
+import alcuk.domain.article.Author;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,8 +32,8 @@ public class ArticleServiceTest {
         // given
         String title = "title1";
         String content = "content1";
-        AuthorDto authorDto = new AuthorDto(1, "simhani1");
-        ArticleDto createArticleRequest = new ArticleDto(title, content, authorDto);
+        Author author = new Author(1, "simhani1");
+        ArticleDto createArticleRequest = new ArticleDto(title, content, author);
         List<ArticleDto> response = new ArrayList<ArticleDto>();
         response.add(createArticleRequest);
 
@@ -47,8 +47,8 @@ public class ArticleServiceTest {
         Assertions.assertAll(
                 () -> Assertions.assertEquals(title, result.get(0).getTitle()),
                 () -> Assertions.assertEquals(content, result.get(0).getContent()),
-                () -> Assertions.assertEquals(authorDto.getId(), result.get(0).getAuthor().getId()),
-                () -> Assertions.assertEquals(authorDto.getName(), result.get(0).getAuthor().getName())
+                () -> Assertions.assertEquals(author.getId(), result.get(0).getAuthor().getId()),
+                () -> Assertions.assertEquals(author.getName(), result.get(0).getAuthor().getName())
         );
     }
 

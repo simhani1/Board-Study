@@ -1,5 +1,7 @@
 package alcuk.acceptance.article;
 
+import alcuk.controller.article.request.ArticleCreateRequest;
+import alcuk.controller.article.response.ArticleResponse;
 import alcuk.domain.article.Author;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.*;
@@ -55,7 +57,7 @@ public class ArticleAcceptanceTest {
     }
 
     @Test
-    @DisplayName("게시글 생성 성공 테스트")
+    @DisplayName("게시글 생성 및 조회 성공 테스트")
     public void CREATE_ARTICLE() throws Exception {
         // given
         String url = "/article";
@@ -64,7 +66,7 @@ public class ArticleAcceptanceTest {
         // when
         mvc.perform(MockMvcRequestBuilders.post(url).contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(request)));
         ResultActions result = mvc.perform(MockMvcRequestBuilders.get("/article"));
-        List<ArticleResponse> articleResponse = Arrays.asList(objectMapper.readValue(result.andReturn().getResponse().getContentAsString(), ArticleResponse[].class));
+        List<ArticleResponse> articleResponse = Arrays.asList(objectMapper.readValue(result.andReturn().getResponse().getContentAsString(), ArticleResponse.class));
         resultList.add(articleResponse.get(0));
 
         // then
@@ -72,8 +74,8 @@ public class ArticleAcceptanceTest {
                 MockMvcResultMatchers.status().isOk(),
                 MockMvcResultMatchers.jsonPath("$.[0].title").value(request.getTitle()),
                 MockMvcResultMatchers.jsonPath("$.[0].content").value(request.getContent()),
-                MockMvcResultMatchers.jsonPath("$.[0].author.id").value(request.getAuthor().getId()),
-                MockMvcResultMatchers.jsonPath("$.[0].author.name").value(request.getAuthor().getName())
+                MockMvcResultMatchers.jsonPath("$.[0].authorDto.id").value(request.getAuthor().getId()),
+                MockMvcResultMatchers.jsonPath("$.[0].authorDto.name").value(request.getAuthor().getName())
         ).andDo(MockMvcResultHandlers.print());
     }
 
@@ -107,94 +109,6 @@ public class ArticleAcceptanceTest {
                 MockMvcResultMatchers.jsonPath("$.[1].author.id").value(articleRequest2.getAuthor().getId()),
                 MockMvcResultMatchers.jsonPath("$.[1].author.name").value(articleRequest2.getAuthor().getName())
         ).andDo(MockMvcResultHandlers.print());
-    }
-
-    class ArticleResponse {
-
-        public ArticleResponse() {
-        }
-
-        public ArticleResponse(int id, String title, String content, String createdAt, Author author) {
-            this.id = id;
-            this.title = title;
-            this.content = content;
-            this.createdAt = createdAt;
-            this.author = author;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getContent() {
-            return content;
-        }
-
-        public void setContent(String content) {
-            this.content = content;
-        }
-
-        public String getCreatedAt() {
-            return createdAt;
-        }
-
-        public void setCreatedAt(String createdAt) {
-            this.createdAt = createdAt;
-        }
-
-        public Author getAuthor() {
-            return author;
-        }
-
-        public void setAuthor(Author author) {
-            this.author = author;
-        }
-
-        int id;
-        String title;
-        String content;
-        String createdAt;
-        Author author;
-    }
-
-
-
-    class ArticleCreateRequest {
-        public ArticleCreateRequest(){}
-        public ArticleCreateRequest(String title, String content, Author author) {
-            this.title = title;
-            this.content = content;
-            this.author = author;
-        }
-
-        String title;
-        String content;
-        Author author;
-
-        public String getTitle() {
-            return title;
-        }
-
-        public String getContent() {
-            return content;
-        }
-
-        public Author getAuthor() {
-            return author;
-        }
-
     }
 
 }
