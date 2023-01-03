@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -38,6 +39,19 @@ public class ArticleAcceptanceTest {
     public void DELETE_ALL_ARTICLE() throws Exception {
         for (ArticleResponse articleResponse : resultList) {
             mvc.perform(MockMvcRequestBuilders.delete("/article/{id}", articleResponse.getId()));
+        }
+        throwIfDoesNotDeletedAllUser();
+    }
+
+    private void throwIfDoesNotDeletedAllUser() throws Exception {
+        for (ArticleResponse articleResponse : resultList) {
+            Assertions.assertThrows(NestedServletException.class, () ->
+                    mvc.perform(MockMvcRequestBuilders.get("/article"))
+                            .andExpectAll(
+                                    MockMvcResultMatchers.status().isOk(),
+                                    MockMvcResultMatchers.content().string("")
+                            )
+            );
         }
     }
 
@@ -77,7 +91,7 @@ public class ArticleAcceptanceTest {
         mvc.perform(MockMvcRequestBuilders.post(saveUrl).contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(articleRequest1)));
         mvc.perform(MockMvcRequestBuilders.post(saveUrl).contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(articleRequest2)));
         ResultActions result = mvc.perform(MockMvcRequestBuilders.get(readUrl));
-        List<ArticleResponse> articleResponse = Arrays.asList(objectMapper.readValue(result.andReturn().getResponse().getContentAsString(), ArticleResponse.class));
+        List<ArticleResponse> articleResponse = Arrays.asList(objectMapper.readValue(result.andReturn().getResponse().getContentAsString(), ArticleResponse[].class));
         resultList.add(articleResponse.get(0));
         resultList.add(articleResponse.get(1));
 
@@ -174,26 +188,13 @@ public class ArticleAcceptanceTest {
             return title;
         }
 
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
         public String getContent() {
             return content;
-        }
-
-        public void setContent(String content) {
-            this.content = content;
         }
 
         public Author getAuthor() {
             return author;
         }
-
-        public void setAuthor(Author author) {
-            this.author = author;
-        }
-
 
     }
 
