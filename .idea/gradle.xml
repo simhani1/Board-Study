@@ -10,7 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/application" />
-            <option value="$PROJECT_DIR$/articlservice" />
+            <option value="$PROJECT_DIR$/articleservice" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/memoryrepository" />
             <option value="$PROJECT_DIR$/userservice" />

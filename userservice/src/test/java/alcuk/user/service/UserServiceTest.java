@@ -32,7 +32,7 @@ public class UserServiceTest {
         UserDto createRequest = new UserDto(name, userId, userPassWord);
 
         // when
-        Mockito.when(userServiceRepository.readUser(Mockito.anyString())).thenReturn(createRequest);
+         Mockito.when(userServiceRepository.readUser(Mockito.anyString())).thenReturn(createRequest);
 
         userService.createUser(createRequest);
         UserDto result = userService.readUser(name);

@@ -14,6 +14,7 @@ repositories {
 dependencies {
     implementation project(':userservice')
     implementation project(':memoryrepository')
+    implementation project(':articleservice')
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter'

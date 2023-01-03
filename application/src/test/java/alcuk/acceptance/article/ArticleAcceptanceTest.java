@@ -1,6 +1,6 @@
 package alcuk.acceptance.article;
 
-import alcuk.controller.user.response.UserResponse;
+import alcuk.domain.article.Author;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -65,8 +64,8 @@ public class ArticleAcceptanceTest {
         // when
         mvc.perform(MockMvcRequestBuilders.post(url).contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(request)));
         ResultActions result = mvc.perform(MockMvcRequestBuilders.get("/article"));
-        ArticleResponse articleResponse = objectMapper.readValue(result.andReturn().getResponse().getContentAsString(), ArticleResponse.class);
-        resultList.add(articleResponse);
+        List<ArticleResponse> articleResponse = Arrays.asList(objectMapper.readValue(result.andReturn().getResponse().getContentAsString(), ArticleResponse[].class));
+        resultList.add(articleResponse.get(0));
 
         // then
         result.andExpectAll(
@@ -196,32 +195,6 @@ public class ArticleAcceptanceTest {
             return author;
         }
 
-    }
-
-    class Author {
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public Author(int id, String name) {
-            this.id = id;
-            this.name = name;
-        }
-
-        int id;
-        String name;
     }
 
 }

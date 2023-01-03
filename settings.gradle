@@ -4,5 +4,5 @@ include 'application'
 include 'userservice'
 include 'memoryrepository'
 include 'domain'
-include 'articlservice'
+include 'articleservice'
 
