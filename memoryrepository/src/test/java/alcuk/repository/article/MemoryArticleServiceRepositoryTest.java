@@ -3,9 +3,7 @@ package alcuk.repository.article;
 import alcuk.article.service.dto.ArticleDto;
 import alcuk.domain.article.Article;
 import alcuk.domain.article.Author;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -19,6 +17,12 @@ public class MemoryArticleServiceRepositoryTest {
 
     @Autowired
     private MemoryArticleServiceRepository repository;
+
+    @BeforeEach
+    @AfterEach
+    public void DELETE_ALL_ARTICLE(){
+        repository.deleteAll();
+    }
 
     @Test
     @DisplayName("게시글 생성 및 조회 테스트")
